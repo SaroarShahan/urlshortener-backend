@@ -2,7 +2,7 @@ FROM node:12-alpine
 
 RUN apk update && apk add yarn
 
-WORKDIR /urs/app
+WORKDIR /usr/app
 
 COPY . .
 
