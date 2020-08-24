@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  # The application
+  urlshortener:
+    container_name: urlshortener-backend
+    image: backend:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/usr/app/src
+    ports:
+      - 4000:4000
+    environment:
+      - PORT=4000
+      - DATABASE=postgres://postgres:shahan123456@urlshortener:5432/urlshortener
+    depends_on:
+      - urlshortener
+    restart: on-failure
+
+  # Database server
+  urlshortener:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_PASSWORD=shahan123456
+      - POSTGRES_DB=urlshortener
+    logging: 
+        driver: none
+    
