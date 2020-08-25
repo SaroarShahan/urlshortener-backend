@@ -7,9 +7,16 @@ const CONNECTION_STRING =
 const db = new Sequelize(CONNECTION_STRING);
 
 const User = db.define('User', {
-  name: DataTypes.TEXT,
-  email: DataTypes.TEXT,
-  password: DataTypes.TEXT,
+  name: {
+    type: DataTypes.TEXT,
+  } ,
+  email: {
+    type: DataTypes.TEXT,
+    unique: true
+  },
+  password: {
+    type: DataTypes.TEXT,
+  }
 });
 
 const Url = db.define('Url', {
