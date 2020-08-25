@@ -6,7 +6,7 @@ const CONNECTION_STRING =
 
 const db = new Sequelize(CONNECTION_STRING);
 
-const User = db.define('User', {
+const User = db.define('user', {
   name: {
     type: DataTypes.TEXT,
   } ,
@@ -19,10 +19,16 @@ const User = db.define('User', {
   }
 });
 
-const Url = db.define('Url', {
+const Url = db.define('url', {
   url: DataTypes.TEXT,
   hash: DataTypes.TEXT,
 });
+
+db.sync()
+  .then(() => {
+    console.log("Database synced")
+  })
+  .catch((err) => console.log(err.message))
 
 module.exports = {
   db,

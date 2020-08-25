@@ -5,14 +5,14 @@ function getRandomSalt() {
 }
 
 function mix(password, salt) {
-    return crypto.pbkdf2Sync(password, salt, 10000, 64, "shah512").toString("hex")
+    return crypto.pbkdf2Sync(password, salt, 10000, 64, "sha512").toString("hex")
 }
 
 function generatePassword(password) {
     const salt = getRandomSalt()
-    const mix = mix(password, salt)
+    const hash = mix(password, salt)
 
-    return {salt, mix}
+    return {salt, hash}
 }
 
 function validatePassword(password, hash, salt) {
