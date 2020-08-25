@@ -27,3 +27,8 @@ services:
       - POSTGRES_DB=urlshorten
     logging:
       driver: none
+    
+  url-adminer:
+    image: adminer
+    ports: 
+      - 8080:8080
